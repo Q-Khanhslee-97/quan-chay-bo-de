@@ -188,11 +188,6 @@
         .color-review { background: #EAB308; color: white; }
         .color-review .corner-icon { color: white; background: rgba(255,255,255,0.2); }
         .color-email { background: var(--brand-email); color: white; }
-        
-        .box-calendar.no-alerts .date-display h4 { font-size: 1.1rem; transition: 0.3s; }
-        .box-calendar.no-alerts .date-display h2 { font-size: 3.5rem; transition: 0.3s; }
-        .box-calendar.no-alerts .date-display p { font-size: 1.1rem; transition: 0.3s; }
-        .box-calendar .date-display h4, .box-calendar .date-display h2, .box-calendar .date-display p { transition: 0.3s; }
 
         .social-icon-large { font-size: 3rem; margin-bottom: 12px; }
         .zalo-icon { width: 3rem; height: 3rem; margin-bottom: 12px; display: block; }
@@ -433,9 +428,8 @@
             /* Lịch và Thông báo (Full 8 Cột) */
             .box-calendar { padding: 16px; }
             .calendar-nav { margin-bottom: 5px; }
-            .date-display h4 { font-size: 1.05rem; }
-            .date-display h2 { font-size: 3.2rem; }
-            .date-display p { font-size: 1.15rem; }
+            .date-display h4 { font-size: 0.9rem; }
+            .date-display h2 { font-size: 2.5rem; }
             
             .announce-title { font-size: 1.1rem; }
             .box-announce .slider-viewport { height: 60px; } 
@@ -592,34 +586,7 @@
         body.no-scroll {
             overflow: hidden !important;
         }
-    
-        @media (min-width: 768px) {
-            .veg-alert {
-                font-size: 1.15rem !important;
-                padding: 16px !important;
-                margin-top: 20px !important;
-            }
-            #vegAlertDesc {
-                font-size: 1rem !important;
-            }
-            
-            .rules-card {
-                font-size: 1.1rem;
-                padding: 25px !important;
-            }
-            .rules-card h3 {
-                font-size: 1.25rem !important;
-            }
-            .rules-card .days-list {
-                font-size: 1.4rem !important;
-            }
-            #closedAlert {
-                font-size: 1.05rem !important;
-                padding: 10px 15px !important;
-                margin-top: 16px !important;
-            }
-        }
-</style>
+    </style>
 </head>
 <body oncontextmenu="return false;">
 
@@ -695,7 +662,7 @@
         </div>
 
         <!-- Ô: Lịch Thông Minh (Clickable) -->
-        <div id="calendarBentoBox" class="bento-item box-calendar color-calendar animate-on-scroll" style="height: 100%; min-height: 250px; display: flex; flex-direction: column; justify-content: center;" onclick="document.getElementById('calendarModal').classList.add('show')">
+        <div id="calendarBentoBox" class="bento-item box-calendar color-calendar animate-on-scroll" style="min-height: 250px;" onclick="document.getElementById('calendarModal').classList.add('show')">
             <div class="calendar-nav">
                 <button class="cal-btn" id="calPrev"><i class="fas fa-chevron-left"></i></button>
                 <button class="cal-btn-today" id="calToday" data-i18n="todayBtn">Hôm nay</button>
@@ -707,7 +674,7 @@
                 <p id="lunarDateDisplay">Âm lịch: --/--</p>
             </div>
             <div class="veg-alert" id="vegAlert" style="display: none;">
-                <strong id="vegAlertTitle">⭐ Ngày chay!</strong><br>
+                <strong id="vegAlertTitle">⭐ Hôm nay là ngày chay!</strong><br>
                 <span id="vegAlertDesc" style="font-size: 0.85rem;" data-i18n="vegDesc">Thường được mọi người chọn để dùng bữa chay.</span>
             </div>
             
@@ -945,41 +912,16 @@
         <button class="close-btn" data-i18n-aria="closeBtnAria" onclick="document.getElementById('calendarModal').classList.remove('show')"><i class="fas fa-times"></i></button>
         <div class="modal-content">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                <h2 style="font-size: 1.8rem; margin: 0; color: var(--brand-calendar);" data-i18n="calendarModalTitle"><i class="fas fa-calendar-check"></i> Lịch</h2>
-                <button id="toggleRulesBtn" data-i18n-aria="rulesToggleAria" style="background: #235833; border: none; color: #0f172a; cursor: pointer; font-size: 1.1rem; font-weight: bold; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1); flex-shrink: 0;" title="Xem nguyên tắc"><i class="fas fa-info"></i></button>
+                <h2 style="font-size: 1.8rem; margin: 0; color: var(--brand-calendar);" data-i18n="calendarModalTitle"><i class="fas fa-calendar-check"></i> Lịch Chay</h2>
+                <button id="toggleRulesBtn" data-i18n-aria="rulesToggleAria" style="background: none; border: none; color: var(--text-secondary); cursor: pointer; font-size: 1.4rem;" title="Xem nguyên tắc"><i class="fas fa-info-circle"></i></button>
             </div>
             
-            <div id="calendarRules" style="display: none; background: #111827; padding: 20px 15px; border-radius: 16px; margin-bottom: 20px; font-size: 1rem; position: relative; overflow: hidden;">
-                <h3 style="font-size: 1.6rem; margin: 0 0 5px 0; color: #4ade80; line-height: 1.2;" data-i18n="calendarRulesTitle">Lịch Chay</h3>
-                <p style="color: #9ca3af; margin-bottom: 20px; font-size: 0.95rem;" data-i18n="calendarModalDesc">Quy tắc các ngày ăn chay truyền thống</p>
-                
-                <h4 data-i18n="rule1Title" style="color: #4ade80; margin-bottom: 5px; font-size: 1.15rem; font-weight: 700;">Quy tắc Thập Trai (10 ngày):</h4>
-                <p style="margin-bottom: 12px; color: #e5e7eb;" data-i18n="rule1Desc_pre">Các ngày Âm lịch hằng tháng:</p>
-                
-                <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 2px; border: 2px solid #166534; border-radius: 8px; margin-bottom: 12px; background: #166534; width: 100%; overflow: hidden;">
-                    <span style="padding: 8px 0; color: #4ade80; font-weight: bold; background: #111827; text-align: center;">1</span>
-                    <span style="padding: 8px 0; color: #4ade80; font-weight: bold; background: #111827; text-align: center;">8</span>
-                    <span style="padding: 8px 0; color: #4ade80; font-weight: bold; background: #111827; text-align: center;">14</span>
-                    <span style="padding: 8px 0; color: #4ade80; font-weight: bold; background: #111827; text-align: center;">15</span>
-                    <span style="padding: 8px 0; color: #4ade80; font-weight: bold; background: #111827; text-align: center;">18</span>
-                    <span style="padding: 8px 0; color: #4ade80; font-weight: bold; background: #111827; text-align: center;">23</span>
-                    <span style="padding: 8px 0; color: #4ade80; font-weight: bold; background: #111827; text-align: center;">24</span>
-                    <span style="padding: 8px 0; color: #4ade80; font-weight: bold; background: #111827; text-align: center;">28</span>
-                    <span style="padding: 8px 0; color: #4ade80; font-weight: bold; background: #111827; text-align: center;">29</span>
-                    <span style="padding: 8px 0; color: #4ade80; font-weight: bold; background: #111827; text-align: center;">30</span>
-                </div>
-                
-                <p style="margin-bottom: 25px; color: #9ca3af; font-style: italic; font-size: 0.9rem;" data-i18n="rule1Note">(Lưu ý: Nếu tháng thiếu không có ngày 30, chuyển sang ăn ngày 27)</p>
-                
-                <h4 style="margin-bottom: 10px; font-size: 1.15rem; font-weight: 700;"><span style="color: #4ade80;" data-i18n="rule2Title">Các tháng ăn chay lớn</span> <span style="color: #86efac; font-weight: normal;" data-i18n="rule2TitleSub">(Tam Nguyệt Trai):</span></h4>
-                <ul data-i18n="rule2Desc" style="margin-bottom: 0; color: #e5e7eb; line-height: 1.6; font-size: 1.05rem; padding-left: 20px; list-style-type: disc;">
-                    <li>Tháng Giêng <span style="color: #4ade80">(1)</span>*</li>
-                    <li>Tháng Bảy <span style="color: #4ade80">(7)</span>*</li>
-                    <li>Tháng Mười <span style="color: #4ade80">(10)</span>*</li>
-                </ul>
-                
-                <p data-i18n="lunarNote" style="margin-top: 10px; margin-bottom: 0; color: #9ca3af; font-style: italic; font-size: 0.9rem;">* Theo lịch Âm</p>
-                <i class="fas fa-sparkles" style="position: absolute; bottom: 15px; right: 15px; color: #9ca3af; font-size: 1.2rem;"></i>
+            <div id="calendarRules" style="display: none; background: var(--bg-body); padding: 15px; border-radius: 12px; margin-bottom: 15px; font-size: 0.9rem;">
+                <p style="color: var(--text-secondary); margin-bottom: 15px;" data-i18n="calendarModalDesc">Quy tắc các ngày ăn chay truyền thống.</p>
+                <h4 data-i18n="rule1Title" style="color: var(--brand-calendar); margin-bottom: 5px;">Nguyên tắc Thập Chay (10 ngày):</h4>
+                <p style="margin-bottom: 10px;" data-i18n="rule1Desc">Các ngày Âm lịch hằng tháng: <strong>1, 8, 14, 15, 18, 23, 24, 28, 29, 30</strong>.</p>
+                <h4 data-i18n="rule2Title" style="color: var(--brand-calendar); margin-bottom: 5px;">Các tháng ăn chay lớn:</h4>
+                <p data-i18n="rule2Desc" style="margin-bottom: 0;">Tháng Giêng (1), Tháng Bảy (7), Tháng Mười (10) Âm lịch.</p>
             </div>
 
             <div class="detailed-calendar">
@@ -1069,7 +1011,7 @@
                         </div>
                     </div>
                     
-                    <a href="https://me.momo.vn/Quanchaybode" target="_blank" class="btn-qr" style="background: #D82D8B; color: white; display: block; width: 100%; border-radius: 12px; padding: 14px; font-size: 1.1rem; font-weight: 600; text-decoration: none; box-sizing: border-box;">
+                    <a href="https://me.momo.vn/quanchaybode" target="_blank" class="btn-qr" style="background: #D82D8B; color: white; display: block; width: 100%; border-radius: 12px; padding: 14px; font-size: 1.1rem; font-weight: 600; text-decoration: none; box-sizing: border-box;">
                         <i class="fas fa-external-link-alt"></i> <span data-i18n="openMomoApp">Tới ứng dụng MoMo</span>
                     </a>
                 </div>
@@ -1477,7 +1419,8 @@
             vi: {
                 title: "Quán Chay Bồ Đề", address: "70/18, Lý Thường Kiệt, Long Châu (Phường 1 cũ), Vĩnh Long", hours: "Mở cửa: 6h - 10h mỗi ngày",
                 call: "Điện thoại", facebook: "Facebook", map: "Bản đồ", emailTitle: "Email",
-                menuTitle: "Thực Đơn", menuClick: "Xem chi tiết món ăn", closedNoticeShort: "Hôm nay quán nghỉ định kỳ<br>(Mùng 2 & 16 Âm lịch hàng tháng)", phoneModalDesc: "Liên hệ với chúng tôi", callNow: "Gọi điện thoại", chatZalo: "Nhắn Zalo", copyPhone: "Sao chép số", saveContact: "Lưu vào danh bạ", copied: "Đã sao chép", emailModalDesc: "Liên hệ qua Email", composeEmail: "Soạn mail", copyEmail: "Sao chép địa chỉ mail",
+                menuTitle: "Thực Đơn", menuClick: "Xem chi tiết món ăn", closedNoticeShort: "Nghỉ định kỳ: Mùng 2 & 16 Âm lịch", phoneModalDesc: "Liên hệ với chúng tôi", callNow: "Gọi điện thoại", chatZalo: "Nhắn Zalo", copyPhone: "Sao chép số", saveContact: "Lưu vào danh bạ", copied: "Đã sao chép", emailModalDesc: "Liên hệ qua Email", composeEmail: "Soạn mail", copyEmail: "Sao chép địa chỉ mail",
+                closedNoticeShort: "Nghỉ định kỳ: Mùng 2 & 16 Âm lịch", phoneModalDesc: "Liên hệ với chúng tôi", callNow: "Gọi điện thoại", chatZalo: "Nhắn Zalo", copyPhone: "Sao chép số", saveContact: "Lưu vào danh bạ", copied: "Đã sao chép",
                 
                 announcementTitle: '<i class="fas fa-bullhorn"></i> Thông báo',
                 announce1_short: "Quán tạm nghỉ định kỳ <strong>mùng 2 và 16 âm lịch</strong> hằng tháng",
@@ -1498,31 +1441,28 @@
 - Nghỉ định kỳ vào mùng 2 và 16 âm lịch hằng tháng", bankName: "NH TMCP Quân Đội (MB Bank)", accountNumber: "Số tài khoản:", receivePhone: "Số điện thoại nhận:", accountHolder: "Chủ tài khoản:", recipient: "Người nhận:", openQrApp: "Tải xuống mã thanh toán VietQR", openMomoApp: "Đến trang thanh toán MoMo", copy: "Copy", copied: "Đã copy!", mapShortAddress: "70/18 Lý Thường Kiệt, Long Châu, Vĩnh Long", openStatus: "Đang mở cửa", closedStatus: "Đã đóng cửa", closedLunarStatus: "Nghỉ định kỳ (Mùng 2/16)", openingSoon: "Sắp mở cửa", swipeHint: "Vuốt ngang để xem thêm", closingSoon: "Sắp đóng cửa", copyAddressLabel: "Copy Address",
                 
                 todayBtn: "Hôm nay", yesterdayBtn: "Hôm qua", tomorrowBtn: "Ngày mai", backToTodayBtn: "Về hôm nay",
-                vegDayAlert: "Ngày chay!",
-                vegMonthAlert: "Tháng chay!", 
-                vegMonthAndDayAlert: "Ngày chay của tháng chay!",
+                vegDayAlert: "Hôm nay là ngày chay!",
+                vegMonthAlert: "Tháng này là tháng chay!", 
+                vegMonthAndDayAlert: "Hôm nay là ngày chay của tháng chay!",
                 vegDesc: "Thường được mọi người chọn để dùng bữa chay.",
                 vegMonthDesc: "Thường được mọi người chọn để dùng bữa chay.",
                 vegMonthAndDayDesc: "Thường được mọi người chọn để dùng bữa chay.",
                 vegDayLegend: "Ngày chay", vegMonthLegend: "Tháng chay", vegMonthAndDayLegend: "Ngày chay của Tháng chay", closedDayLegend: "Ngày nghỉ",
                 
-                calendarModalTitle: "Lịch",
-                calendarRulesTitle: "Lịch Chay",
-                calendarModalDesc: "Quy tắc các ngày ăn chay truyền thống",
-                rule1Title: "Quy tắc Thập Trai (10 ngày):",
-                rule1Desc_pre: "Các ngày Âm lịch hằng tháng:",
-                rule1Note: "(Lưu ý: Nếu tháng thiếu không có ngày 30, chuyển sang ăn ngày 27)",
-                rule2Title: "Các tháng ăn chay lớn",
-                rule2TitleSub: "(Tam Nguyệt Trai):",
-                lunarNote: "* Theo lịch Âm",
-                rule2Desc: "<li>Tháng Giêng <span style=\"color: #4ade80\">(1)</span>*</li><li>Tháng Bảy <span style=\"color: #4ade80\">(7)</span>*</li><li>Tháng Mười <span style=\"color: #4ade80\">(10)</span>*</li>",
+                calendarModalTitle: "Lịch Chay",
+                calendarModalDesc: "Quy tắc các ngày ăn chay truyền thống.",
+                rule1Title: "Nguyên tắc Thập Chay (10 ngày):",
+                rule1Desc: "Các ngày Âm lịch hằng tháng: <strong>1, 8, 14, 15, 18, 23, 24, 28, 29, 30</strong>.",
+                rule2Title: "Các tháng ăn chay lớn:",
+                rule2Desc: "Tháng Giêng (1), Tháng Bảy (7), Tháng Mười (10) Âm lịch.",
 
                 footer: "Phát triển bởi Quán Chay Bồ Đề", termsLink: "Điều khoản & Chính sách", reportLink: "Báo lỗi", termsModalTitle: "Điều khoản & Chính sách", termsLastUpdated: "Cập nhật lần cuối: tháng 9/2026", closeBtnAria: "Đóng bảng thông tin", langToggleAria: "Chuyển đổi ngôn ngữ", themeToggleAria: "Chuyển đổi giao diện", rulesToggleAria: "Xem nguyên tắc"
             },
             en: {
                 title: "Bo De Vegetarian", address: "70/18, Ly Thuong Kiet, Long Chau (former Ward 1), Vinh Long", hours: "Open: 6:00 AM - 10:00 AM daily",
                 call: "Phone", phoneNumber: "+84 9097499", facebook: "Facebook", map: "Map", emailTitle: "Email",
-                menuTitle: "Menu", menuClick: "View delicious dishes", closedNoticeShort: "Closed today<br>(2nd & 16th of every Lunar month)", phoneModalDesc: "Contact us", callNow: "Call now", chatZalo: "Chat on Zalo", copyPhone: "Copy number", saveContact: "Save to contacts", copied: "Copied!", mapShortAddress: "70/18 Ly Thuong Kiet, Long Chau, Vinh Long", openStatus: "Open now", closedStatus: "Closed", closedLunarStatus: "Closed for Lunar holiday (2nd/16th)", openingSoon: "Opening soon", swipeHint: "Swipe horizontally to see more", closingSoon: "Closing soon", copyAddressLabel: "Copy Address", emailModalDesc: "Contact via Email", composeEmail: "Compose email", copyEmail: "Copy email address",
+                menuTitle: "Menu", menuClick: "View delicious dishes", closedNoticeShort: "Closed: 2nd & 16th Lunar days", phoneModalDesc: "Contact us", callNow: "Call now", chatZalo: "Chat on Zalo", copyPhone: "Copy number", saveContact: "Save to contacts", copied: "Copied!", mapShortAddress: "70/18 Ly Thuong Kiet, Long Chau, Vinh Long", openStatus: "Open now", closedStatus: "Closed", closedLunarStatus: "Closed for Lunar holiday (2nd/16th)", openingSoon: "Opening soon", swipeHint: "Swipe horizontally to see more", closingSoon: "Closing soon", copyAddressLabel: "Copy Address", emailModalDesc: "Contact via Email", composeEmail: "Compose email", copyEmail: "Copy email address",
+                closedNoticeShort: "Closed: 2nd & 16th Lunar days", phoneModalDesc: "Contact us", callNow: "Call now", chatZalo: "Chat on Zalo", copyPhone: "Copy number", saveContact: "Save to contacts", copied: "Copied!", mapShortAddress: "70/18 Ly Thuong Kiet, Long Chau, Vinh Long", openStatus: "Open now", closedStatus: "Closed", closedLunarStatus: "Closed for Lunar holiday (2nd/16th)", openingSoon: "Opening soon", swipeHint: "Swipe horizontally to see more", closingSoon: "Closing soon", copyAddressLabel: "Copy Address",
                 
                 announcementTitle: '<i class="fas fa-bullhorn"></i> Announcements',
                 announce1_short: "Closed periodically on the <strong>2nd and 16th lunar days</strong> every month", 
@@ -1543,24 +1483,20 @@
 - Closed on the 2nd and 16th days of every Lunar month", bankName: "Military Commercial JSB (MB Bank)", accountNumber: "Account Number:", receivePhone: "Recipient Phone:", accountHolder: "Account Name:", recipient: "Recipient:", openQrApp: "Download VietQR Code", openMomoApp: "Open MoMo App", copy: "Copy", copied: "Copied!", mapShortAddress: "70/18 Ly Thuong Kiet, Long Chau, Vinh Long", openStatus: "Open now", closedStatus: "Closed", closedLunarStatus: "Closed for Lunar holiday (2nd/16th)", openingSoon: "Opening soon", swipeHint: "Swipe horizontally to see more", closingSoon: "Closing soon", copyAddressLabel: "Copy Address",
                 
                 todayBtn: "Today", yesterdayBtn: "Yesterday", tomorrowBtn: "Tomorrow", backToTodayBtn: "Back to today",
-                vegDayAlert: "Vegetarian Day!",
-                vegMonthAlert: "Vegetarian Month!", 
-                vegMonthAndDayAlert: "Vegetarian Day of a Vegetarian Month!",
+                vegDayAlert: "Today is a Vegetarian Day!",
+                vegMonthAlert: "This is a Vegetarian Month!", 
+                vegMonthAndDayAlert: "Today is a Vegetarian Day of a Vegetarian Month!",
                 vegDesc: "A popular time chosen by many for enjoying pure vegetarian meals.",
                 vegMonthDesc: "A popular time chosen by many for enjoying pure vegetarian meals.",
                 vegMonthAndDayDesc: "A popular time chosen by many for enjoying pure vegetarian meals.",
                 vegDayLegend: "Vegetarian Day", vegMonthLegend: "Vegetarian Month", vegMonthAndDayLegend: "Veg Day of Veg Month", closedDayLegend: "Closed Day",
 
-                calendarModalTitle: "Calendar",
-                calendarRulesTitle: "Vegetarian Calendar",
-                calendarModalDesc: "Traditional vegetarian rules",
-                rule1Title: "10-Day Rule (Ten Fasting Days):",
-                rule1Desc_pre: "Lunar days of each month:",
-                rule1Note: "(Note: If the month lacks a 30th day, it shifts to the 27th)",
-                rule2Title: "Major Vegetarian Months",
-                rule2TitleSub: "(Major Fasting Months):",
-                lunarNote: "* Based on the Lunar Calendar",
-                rule2Desc: "<li>1st Month <span style=\"color: #4ade80\">(1)</span>*</li><li>7th Month <span style=\"color: #4ade80\">(7)</span>*</li><li>10th Month <span style=\"color: #4ade80\">(10)</span>*</li>",
+                calendarModalTitle: "Vegetarian Calendar Info",
+                calendarModalDesc: "Traditional vegetarian rules.",
+                rule1Title: "10-Day Vegetarian Rule:",
+                rule1Desc: "Lunar days every month: <strong>1, 8, 14, 15, 18, 23, 24, 28, 29, 30</strong>.",
+                rule2Title: "Major Vegetarian Months:",
+                rule2Desc: "1st, 7th, and 10th Lunar Months.",
 
                 footer: "Developed by Bo De Vegetarian", termsLink: "Terms & Privacy Policy", reportLink: "Report Issue", termsModalTitle: "Terms of Use & Privacy Policy", termsLastUpdated: "Last updated: September 2026", closeBtnAria: "Close dialog", langToggleAria: "Change language", themeToggleAria: "Toggle theme", rulesToggleAria: "View rules"
             }
@@ -1646,10 +1582,6 @@
                         section.style.display = 'none';
                     }
                 });
-                
-                // Cuộn lên đầu khi chuyển tab/filter
-                const modalContent = btn.closest('.modal-content');
-                if (modalContent) modalContent.scrollTop = 0;
             });
         });
 
@@ -1664,10 +1596,6 @@
 
                 btn.classList.add('active');
                 document.getElementById(btn.getAttribute('data-target') + 'TabContent').classList.add('active');
-                
-                // Cuộn lên đầu khi chuyển tab
-                const modalContent = btn.closest('.modal-content');
-                if (modalContent) modalContent.scrollTop = 0;
             });
         });
 
@@ -2068,19 +1996,6 @@ NOTE:${translations[currentLang].vCardNote}${photoVcardStr ? "\n" + photoVcardSt
             return { day: parseInt(d), month: parseInt(m) };
         }
 
-        function getLunarMonthLength(baseDate) {
-            let d = new Date(baseDate.getTime());
-            let currentLunar = getLunarDate(d);
-            let currentDay = currentLunar.day;
-            for (let i = 0; i <= 31; i++) {
-                d.setDate(d.getDate() + 1);
-                let nextLunar = getLunarDate(d);
-                if (nextLunar.day < currentDay) return currentDay;
-                currentDay = nextLunar.day;
-            }
-            return 30;
-        }
-
         function isVegetarianDay(lunarDay) {
             const vegDays = [1, 8, 14, 15, 18, 23, 24, 28, 29, 30];
             return vegDays.includes(lunarDay);
@@ -2141,15 +2056,10 @@ NOTE:${translations[currentLang].vCardNote}${photoVcardStr ? "\n" + photoVcardSt
             }
 
             const lunar = getLunarDate(calDate);
-            const monthLen = getLunarMonthLength(calDate);
-            const isThangDu = monthLen === 30;
-            
             if (currentLang === 'vi') {
-                const monthSuffixVi = isThangDu ? "(Tháng đủ)" : "(Tháng thiếu)";
-                document.getElementById('lunarDateDisplay').innerText = `Âm lịch: ${lunar.day}/${lunar.month} ${monthSuffixVi}`;
+                document.getElementById('lunarDateDisplay').innerText = `Âm lịch: ${lunar.day}/${lunar.month}`;
             } else {
-                const monthSuffixEn = isThangDu ? "(Full month)" : "(Short month)";
-                document.getElementById('lunarDateDisplay').innerText = `Lunar: ${lunar.day}/${lunar.month} ${monthSuffixEn}`;
+                document.getElementById('lunarDateDisplay').innerText = `Lunar: ${lunar.day}/${lunar.month}`;
             }
 
             const alertBox = document.getElementById('vegAlert');
@@ -2175,30 +2085,20 @@ NOTE:${translations[currentLang].vCardNote}${photoVcardStr ? "\n" + photoVcardSt
                 closedAlert.style.display = isClosedDay ? 'inline-flex' : 'none';
             }
 
-            let hasAlert = false;
             if (isVegMonth && isVegDay) {
                 alertBox.style.display = 'block';
-                alertTitle.innerText = '⭐ ' + (translations[currentLang].vegMonthAndDayAlert || 'Ngày chay của tháng chay!');
+                alertTitle.innerText = '⭐ ' + (translations[currentLang].vegMonthAndDayAlert || 'Hôm nay là ngày chay của tháng chay!');
                 alertDesc.innerText = translations[currentLang].vegMonthAndDayDesc;
-                hasAlert = true;
             } else if (isVegMonth) {
                 alertBox.style.display = 'block';
-                alertTitle.innerText = '⭐ ' + (translations[currentLang].vegMonthAlert || 'Tháng chay!');
+                alertTitle.innerText = '⭐ ' + (translations[currentLang].vegMonthAlert || 'Tháng này là tháng chay!');
                 alertDesc.innerText = translations[currentLang].vegMonthDesc;
-                hasAlert = true;
             } else if (isVegDay) {
                 alertBox.style.display = 'block';
-                alertTitle.innerText = '⭐ ' + (translations[currentLang].vegDayAlert || 'Ngày chay!');
+                alertTitle.innerText = '⭐ ' + (translations[currentLang].vegDayAlert || 'Hôm nay là ngày chay!');
                 alertDesc.innerText = translations[currentLang].vegDesc;
-                hasAlert = true;
             } else {
                 alertBox.style.display = 'none';
-            }
-            
-            if (hasAlert || isClosedDay) {
-                calendarBentoBox.classList.remove('no-alerts');
-            } else {
-                calendarBentoBox.classList.add('no-alerts');
             }
 
             // Cập nhật text của nút "Hôm nay" để tránh hiểu lầm
@@ -2361,11 +2261,6 @@ NOTE:${translations[currentLang].vCardNote}${photoVcardStr ? "\n" + photoVcardSt
 
         // Xử lý deep link URL hash
         function handleHash() {
-            // Đóng tất cả các modal đang mở trước khi xử lý hash mới
-            document.querySelectorAll('.modal').forEach(m => {
-                m.classList.remove('show');
-            });
-            
             const hash = window.location.hash.toLowerCase();
             if (!hash) return;
             
