@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://q-khanhslee-97.github.io/quan-chay-bo-de/sitemap.xml
